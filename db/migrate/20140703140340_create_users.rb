@@ -8,7 +8,7 @@ t.integer :nausea
 t.integer :happiness
 t.integer :tickets
 t.integer :height
-t.boolean :admin
+t.boolean :admin 
 
 
 
