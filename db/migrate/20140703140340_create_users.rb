@@ -5,9 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :password_digest
 t.integer :nausea
-t.integer :nausea_rating
 t.integer :happiness
-t.integer :happiness_rating
 t.integer :tickets
 t.integer :height
 t.boolean :admin
