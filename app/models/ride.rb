@@ -1,5 +1,6 @@
 class Ride < ActiveRecord::Base
   # write associations here   rspec spec/models/ride_spec.rb
+  # =>                        rspec spec/features
   belongs_to :user
   belongs_to :attraction
 
