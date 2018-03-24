@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-
+  #before_action :set_user, only:[:show, :edit, :update, :destroy]
   def new
-    #application controller already defines the current user with the before_action
+    #application controller callback
   end
   def create
     #binding.pry
@@ -10,19 +10,38 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       #redirect_to @user
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "Welcome to the theme park!"
     else
-      #redirect_to root_path
-      redirect_to new_user_path
+
+      render :new
     end
-
   end
-
-
+  def show
+    @message = params[:message] if params[:message]
+    @message ||=false  #set @message to false if it is nil, false, or undefined
+  end
+  def update
+      if @user.update(user_params)
+        redirect_to @user, notice: "User was successfully updated."
+      else
+        render :edit
+      end
+  end
+  def edit
+  end
+  private
+      # Use callbacks to share common setup or constraints between actions.
+      #not needed because we already setup in application controller
+  # =>  def set_user
+  # =>      @user = User.find(params[:id])
+  # =>  end
+  ## Never trust parameters from the scary internet, only allow the white list through.
+  #boom strong params
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name, :password, :password_confirmation, :height, :tickets, :nausea, :admin)
   end
-   
+
+
 
 
 end
