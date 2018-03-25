@@ -1,14 +1,19 @@
 class UsersController < ApplicationController
-  #before_action :set_user, only:[:show, :edit, :update, :destroy]
+  before_action :set_user, only:[:show, :edit, :update, :destroy]
+
+
   def new
     #application controller callback
+    #binding.pry
+    @user = User.new
   end
   def create
     #binding.pry
     @user = User.new(user_params)
-    #binding.pry
+  # binding.pry
     if @user.save
       session[:user_id] = @user.id
+  #session.inspect
       #redirect_to @user
       redirect_to user_path(@user), notice: "Welcome to the theme park!"
     else
@@ -38,9 +43,11 @@ class UsersController < ApplicationController
   ## Never trust parameters from the scary internet, only allow the white list through.
   #boom strong params
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :height, :tickets, :nausea, :admin)
+    params.require(:user).permit(:name, :password, :password_confirmation, :height, :tickets, :nausea, :admin, :happiness)
   end
-
+  def set_user
+      @user = User.find_by(id: params[:id])
+  end
 
 
 

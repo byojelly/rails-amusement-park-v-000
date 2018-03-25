@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_many :attractions, through: :rides
   has_secure_password  #so that our user has methods such as #password, #confirmation, #authenticate
 
-    def Mood
+    def mood
+      #binding.pry
           if self.happiness && self.nausea
               mood = self.happiness - self.nausea
               mood > 0 ? "happy" : "sad"

@@ -7,9 +7,9 @@ class AttractionsController < ApplicationController
     @attraction = Attraction.new
   end
   def create
-      @attraction = Attraction.new(attration_params)
+      @attraction = Attraction.new(attraction_params)
       if @attraction.save
-          redirect_to @attra, notice: 'Attraction was successfully create.'
+          redirect_to @attraction, notice: 'Attraction was successfully create.'
       else
           render :new
       end
@@ -36,7 +36,7 @@ class AttractionsController < ApplicationController
   def set_attraction
     @attraction = Attraction.find(params[:id])
   end
-  def attration_params
+  def attraction_params
     params.require(:attraction).permit(:name, :min_height, :tickets, :happiness_rating, :nausea_rating)
   end
 end

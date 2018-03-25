@@ -9,6 +9,7 @@ root "static_pages#home"
 get '/signin' => 'sessions#new'
 post '/sessions/create' => 'sessions#create'
 delete '/signout' => "sessions#destroy"
+get '/sessions/destroy' => 'sessions#destroy'
 
 #rides
 post "/rides/new" => 'rides#new'

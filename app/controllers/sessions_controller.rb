@@ -1,11 +1,16 @@
 class SessionsController < ApplicationController
 
   def new
+    #binding.pry
     #raise params.inspect
     @user = User.new
+    #@users = User.all
+  end
+  def index
     @users = User.all
   end
   def create
+
     @user = User.find_by(name: params[:user][:name])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
@@ -17,7 +22,8 @@ class SessionsController < ApplicationController
   end
     #deleting the user session
   def destroy
-      session.delete :name
+  #  binding.pry
+      session.delete :user_id
       redirect_to '/'
   end
 
