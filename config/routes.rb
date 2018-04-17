@@ -5,6 +5,7 @@ root "static_pages#home"
 
 
 
+
 #sessions - loggin in and out
 get '/signin' => 'sessions#new'
 post '/sessions/create' => 'sessions#create'
